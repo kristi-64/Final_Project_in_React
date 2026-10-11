@@ -2,23 +2,15 @@ import Link from "next/link";
 
 import styles from "./Navbar.module.css";
 
-const Navbar = ({ list, title = "My Store" }) => {
+export default function Navbar() {
   return (
-    <nav className={styles.header}>
-      <div className={styles.navbarContainer}>
-        <Link href="/" className={styles.navbarLogo}>
-          <span>{title}</span>
-        </Link>
-        <div className={styles.navbarMenu}>
-          {list.map((item, index) => (
-            <div className={styles.navbarItem} key={index}>
-              <Link href="#">{item}</Link>
-            </div>
-          ))}
-        </div>
+    <nav className={styles.navbar}>
+      <div className={styles.logo}>MyStore</div>
+      <div className={styles.links}>
+        <Link href="/products">Products</Link>
+        <Link href="/profile">Profile</Link>
+        <Link href="/cart">Cart</Link>
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}
