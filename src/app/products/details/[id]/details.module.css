@@ -104,7 +104,6 @@
   cursor: pointer;
   transition: background-color 0.2s;
   width: 200px;
-  max-width: fit-content;
 }
 
 .cartButton:hover {
