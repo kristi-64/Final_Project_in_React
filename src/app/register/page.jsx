@@ -38,3 +38,93 @@ const validationSchema = yup.object().shape({
       "გამოყენეთ ვალიდური ქართული ტელეფონის ნომერი (+995XXXXXXXXX)",
     ),
 });
+
+export default function RegisterPage() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmit = async (data) => {
+    try {
+      const response = theFetchCall(data);
+      const responseObj = await response;
+      if (responseObj.ok) {
+        alert("მომხმარებელი წარმატებით დარეგისტრირდა!");
+        reset();
+      }
+    } catch (error) {
+      console.error("შეცდომა:", error);
+    }
+  };
+
+  const theFetchCall = async (data) => {
+    return await fetch("https://jsonplaceholder.typicode.com/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  };
+  return (
+    <div className={styles.formContainer}>
+      <h2>რეგისტრაცია</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <div>
+          <label>სახელი:</label>
+          <input type="text" {...register("firstName")} />
+          {errors.firstName && (
+            <p className={styles.error}>{errors.firstName.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label>გვარი:</label>
+          <input type="text" {...register("lastName")} />
+          {errors.lastName && (
+            <p className={styles.error}>{errors.lastName.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label>ასაკი:</label>
+          <input type="number" {...register("age")} />
+          {errors.age && <p className={styles.error}>{errors.age.message}</p>}
+        </div>
+
+        <div>
+          <label>იმეილი:</label>
+          <input type="email" {...register("email")} />
+          {errors.email && (
+            <p className={styles.error}>{errors.email.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label>პაროლი:</label>
+          <input type="password" {...register("password")} />
+          {errors.password && (
+            <p className={styles.error}>{errors.password.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label>ტელეფონი:</label>
+          <input type="text" {...register("phone")} />
+          {errors.phone && (
+            <p className={styles.error}>{errors.phone.message}</p>
+          )}
+        </div>
+
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "იგზავნება..." : "რეგისტრაცია"}
+        </button>
+      </form>
+    </div>
+  );
+}
