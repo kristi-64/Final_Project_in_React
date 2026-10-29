@@ -13,3 +13,14 @@ const loginSchema = yup.object().shape({
     .required("პაროლი სავალდებულოა")
     .min(4, "მინიმუმ 4 სიმბოლო"),
 });
+
+export default function loginSchema() {
+  const router = useRouter();
+  const [errorMsg, useErrorMsg] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useform({ resolver: yupResolver(loginSchema) });
+}
