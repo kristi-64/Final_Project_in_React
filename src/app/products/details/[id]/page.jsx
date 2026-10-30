@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./details.module.css";
+import AddToCartButton from "./AddToCartButton";
 
 export default async function ProductDetailPage({ params }) {
   const { id } = await params;
@@ -33,7 +34,7 @@ export default async function ProductDetailPage({ params }) {
             <h3>აღწერა</h3>
             <p className={styles.description}>{product.description}</p>
           </div>
-          <button className={styles.cartButton}>კალათაში დამატება</button>
+          <AddToCartButton product={product} />
         </div>
       </div>{" "}
     </div>
