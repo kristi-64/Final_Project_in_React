@@ -1,8 +1,32 @@
+"use client";
+import { useState, useEffect } from "react";
 import styles from "./profile.module.css";
 
-export default async function ProfilePage() {
-  const res = await fetch("https://fakestoreapi.com/users/3");
-  const user = await res.json();
+export default function ProfilePage() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const res = await fetch("https://fakestoreapi.com/users/3");
+        const data = await res.json();
+        setUser(data);
+      } catch (error) {
+        console.error("მონაცემების წამოღების შეცდომა:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchUser();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ padding: "40px", textAlign: "center" }}>იტვირთება...</div>
+    );
+  }
 
   return (
     <div className={styles.container}>
@@ -11,24 +35,24 @@ export default async function ProfilePage() {
         <div className={styles.infoGroup}>
           <span className={styles.label}>სახელი:</span>
           <span className={styles.value}>
-            {user.name.firstname} {user.name.lastname}
+            {user?.name?.firstname} {user?.name?.lastname}
           </span>
         </div>
         <div className={styles.infoGroup}>
-          <span className={styles.label}> მომხმარებელი:</span>
-          <span className={styles.value}>{user.username}</span>
+          <span className={styles.label}>მომხმარებელი:</span>
+          <span className={styles.value}>{user?.username}</span>
         </div>
         <div className={styles.infoGroup}>
           <span className={styles.label}>ელ-ფოსტა:</span>
-          <span className={styles.value}>{user.email}</span>
+          <span className={styles.value}>{user?.email}</span>
         </div>
         <div className={styles.infoGroup}>
           <span className={styles.label}>ტელეფონი:</span>
-          <span className={styles.value}>{user.phone}</span>
+          <span className={styles.value}>{user?.phone}</span>
         </div>
         <div className={styles.infoGroup}>
           <span className={styles.label}>ქალაქი:</span>
-          <span className={styles.value}>{user.address.city}</span>
+          <span className={styles.value}>{user?.address?.city}</span>
         </div>
       </div>
     </div>
