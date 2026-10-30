@@ -1,6 +1,12 @@
 "use client";
-import { useState } from "react";
-import Link from "next/link";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity,
+} from "@/store/cartSlice";
+
 import styles from "./cart.module.css";
 
 export default function CartPage() {

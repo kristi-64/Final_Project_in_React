@@ -7,9 +7,33 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.logo}>MyStore</div>
       <div className={styles.links}>
-        <Link href="/products">Products</Link>
-        <Link href="/profile">Profile</Link>
-        <Link href="/cart">Cart</Link>
+        <Link href="/products">პროდუქტი</Link>
+        <Link href="/profile">პროფილი</Link>
+        <Link href="/cart">კალათა</Link>
+        <div className={styles.authLinks}>
+          <Link
+            href="/login"
+            style={{
+              backgroundColor: "blue",
+              color: "white",
+              padding: "5px 10px",
+              borderRadius: "5px",
+            }}
+          >
+            შესვლა
+          </Link>
+          <Link
+            href="/register"
+            style={{
+              backgroundColor: "lightgrey",
+              color: "white",
+              padding: "5px 10px",
+              borderRadius: "5px",
+            }}
+          >
+            რეგისტრაცია
+          </Link>
+        </div>
       </div>
     </nav>
   );

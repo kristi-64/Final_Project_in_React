@@ -18,7 +18,7 @@
 
 .links {
   display: flex;
-  gap: 80px;
+  gap: 150px;
   justify-content: center;
   align-items: center;
   max-width: 1220px;
@@ -36,4 +36,12 @@
 
 .links a:hover {
   color: #0070f3;
+}
+
+.authLinks {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  top: 16px;
+  right: 32px;
 }

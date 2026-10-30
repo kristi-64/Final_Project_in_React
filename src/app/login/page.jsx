@@ -47,7 +47,7 @@ export default function loginSchemaPage() {
         localStorage.setItem("authToken", result.token);
 
         alert("თქვენ წარმატებით გაიარეთ ავტორიზაცია!");
-        router.push("/profile");
+        router.push("/products");
       }
     } catch (err) {
       setErrorMsg(

@@ -15,7 +15,7 @@ export default async function ProfilePage() {
           </span>
         </div>
         <div className={styles.infoGroup}>
-          <span className={styles.label}>მომხმარებლის სახელი:</span>
+          <span className={styles.label}> მომხმარებელი:</span>
           <span className={styles.value}>{user.username}</span>
         </div>
         <div className={styles.infoGroup}>
